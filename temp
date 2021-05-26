@@ -1,0 +1,43 @@
+from RegexGenerator import RegexGenerator
+
+# myRegexGenerator = RegexGenerator("12:50pm - 2:00pm")
+
+# print(myRegexGenerator.get_regex())
+
+
+import re
+from datetime import *
+
+filename="C:\\Users\\0008EI744\\Downloads\\TimeLogCarbon.txt"
+textfile = open(filename, 'r')
+matches = []
+offset = 0
+reg = re.compile("\d{1,2}[:]\d{2}\w{2}\s{1}[-]\s{1}\d{1,2}[:]\d{2}\w{2}")
+for line in textfile:
+    matches += [(reg.findall(line))]
+print(matches)
+textfile.close()
+
+reg2 = re.compile("\d{1,2}[:]\d{2}\w{2}")
+total_times= []
+for li in matches:
+    # total_times +=
+    li = ''.join(str(li))
+    total_times+= ((reg2.findall(li)),)
+    # total=''.join(str(total_times))
+    times=datetime.strptime("11:40pm", '%I:%M%p').strftime('%H:%M:%S')
+    times2=datetime.strptime("9:10pm", '%I:%M%p').strftime('%H:%M:%S')
+    delta=datetime.strptime(times, '%H:%M:%S') - datetime.strptime(times2, '%H:%M:%S')
+print(delta)
+# print([x[0] for x in total_times])
+# print(total_times)
+
+
+import datetime
+
+from RegexGenerator import RegexGenerator
+
+# myRegexGenerator = RegexGenerator("12:50pm - 2:00pm")
+
+# print(myRegexGenerator.get_regex())
+
