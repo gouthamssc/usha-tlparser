@@ -15,7 +15,7 @@ if re.match(r"Time Log:", firstLine):
         "\d{1,2}[:]\d{2}\w{2}\s{0,1}[-]\s{0,1}\d{1,2}[:]\d{2}\w{2}")    # Regex for capturing time with pattern 4:03pm - 6:57pm
     reg2 = re.compile("\d{1,2}[:]\d{2}\w{2}")                           # Regex for capturing start time and end time with pattern 4:03pm/am
 
-    for line in textfile:
+    for i, line in enumerate(textfile,start=2):
         if (reg.findall(line)):
             row_matches = reg.findall(line)
             for li in row_matches:
@@ -41,7 +41,7 @@ if re.match(r"Time Log:", firstLine):
                 else:  # if hours in start-time ==  hours in end-time
                     print("Start and End Times are same, so no work happened")
         else:
-            print("Time not found")
+            print('{}=Time not found'.format(i, line.strip()))
 
     print("_________________________________________________________________________________________")
     print("Total Time spent: " + str(timedelta(seconds=sum(time))))
